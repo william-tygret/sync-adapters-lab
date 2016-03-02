@@ -43,7 +43,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         //when its our turn in the queue, it calls onPerformSync
         String data ="";
         try {
-            URL url = new URL("http://api.nytimes.com/svc/news/v3/content/all/all/2.json?limit=20&api-key=dee1efe817032e856101456f7b475755%3A17%3A74605161");
+            URL url = new URL("http://dev.markitondemand.com/MODApis/Api/v2/Quote/json?symbol=AAPL&callback=myFunction");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.connect();
             InputStream inStream = connection.getInputStream();
@@ -53,14 +53,12 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
         }
 
         Gson gson = new Gson();
-        SearchResult searchResult = gson.fromJson(data, SearchResult.class);
+        QuoteResult quoteResult = gson.fromJson(data, QuoteResult.class);
 
-        int counter=0;
-        while(counter<5){
-            String title = searchResult.getResults().get(counter).getTitle();
-            Log.d(TAG, title);
-            counter++;
-        }
+
+            String result = quoteResult.getName()+" $"+quoteResult.getLastPrice();
+            Log.d(TAG, result);
+
 
 
     }

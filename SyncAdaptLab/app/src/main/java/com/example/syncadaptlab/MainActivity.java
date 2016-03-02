@@ -32,12 +32,7 @@ public class MainActivity extends AppCompatActivity {
         //creates our sync account
         mAccount = createSyncAccount(this);
 
-        ContentResolver.setSyncAutomatically(mAccount,AUTHORITY,true);
-        ContentResolver.addPeriodicSync(
-                mAccount,
-                AUTHORITY,
-                Bundle.EMPTY,
-                60);
+
 
         Button button =(Button)findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +47,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button button60 = (Button)findViewById(R.id.button60);
+        button60.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ContentResolver.setSyncAutomatically(mAccount, AUTHORITY, true);
+                ContentResolver.addPeriodicSync(
+                        mAccount,
+                        AUTHORITY,
+                        Bundle.EMPTY,
+                        60);
+            }
+        });
+
+        Button button300 = (Button)findViewById(R.id.button60);
+        button300.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ContentResolver.setSyncAutomatically(mAccount, AUTHORITY, true);
+                ContentResolver.addPeriodicSync(
+                        mAccount,
+                        AUTHORITY,
+                        Bundle.EMPTY,
+                        300);
+            }
+        });
     }
 
     public static Account createSyncAccount(Context context){

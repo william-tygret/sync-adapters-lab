@@ -41,7 +41,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
 
-        String[]theSymbols = new String[]{"AAPL","MCD","GOOG","C"};
+        String[]theSymbols = new String[]{"AAPL","MCD","GOOG","C","YHOO"};
 
         for(int i=0;i<theSymbols.length;i++) {
 

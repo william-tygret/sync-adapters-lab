@@ -40,25 +40,30 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
 
     @Override
     public void onPerformSync(Account account, Bundle extras, String authority, ContentProviderClient provider, SyncResult syncResult) {
-        //when its our turn in the queue, it calls onPerformSync
-        String data ="";
-        try {
-            URL url = new URL("http://dev.markitondemand.com/MODApis/Api/v2/Quote/json?symbol=AAPL&callback=myFunction");
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.connect();
-            InputStream inStream = connection.getInputStream();
-            data = getInputData(inStream);
-        } catch (Throwable e) {
-            e.printStackTrace();
-        }
 
-        Gson gson = new Gson();
-        QuoteResult quoteResult = gson.fromJson(data, QuoteResult.class);
+        String[]theSymbols = new String[]{"AAPL","MCD","GOOG","C"};
+
+        for(int i=0;i<theSymbols.length;i++) {
+
+            //when its our turn in the queue, it calls onPerformSync
+            String data = "";
+            try {
+                URL url = new URL("http://dev.markitondemand.com/MODApis/Api/v2/Quote/json?symbol="+theSymbols[i]+"&callback=myFunction");
+                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                connection.connect();
+                InputStream inStream = connection.getInputStream();
+                data = getInputData(inStream);
+            } catch (Throwable e) {
+                e.printStackTrace();
+            }
+
+            Gson gson = new Gson();
+            QuoteResult quoteResult = gson.fromJson(data, QuoteResult.class);
 
 
-            String result = quoteResult.getName()+" $"+quoteResult.getLastPrice();
+            String result = quoteResult.getName() + " $" + quoteResult.getLastPrice();
             Log.d(TAG, result);
-
+        }
 
 
     }

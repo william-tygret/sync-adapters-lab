@@ -34,7 +34,7 @@
 
         <provider
             android:name="com.example.syncadaptlab.StubProvider"
-            android:authorities="ly.generalassemb.drewmahrt.syncadapterexample.StubProvider"
+            android:authorities="com.example.syncadaptlab.StubProvider"
             android:label="my provider"
             android:exported="false"
             android:syncable="true"/>

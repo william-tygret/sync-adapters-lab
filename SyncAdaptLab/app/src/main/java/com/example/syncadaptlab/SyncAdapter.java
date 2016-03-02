@@ -7,6 +7,9 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SyncResult;
 import android.os.Bundle;
+import android.util.Log;
+
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -49,8 +52,8 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
             e.printStackTrace();
         }
 
-        //Gson gson = new Gson();
-        /*SearchResult searchResult = gson.fromJson(data, SearchResult.class);
+        Gson gson = new Gson();
+        SearchResult searchResult = gson.fromJson(data, SearchResult.class);
 
         int counter=0;
         while(counter<5){
@@ -58,7 +61,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
             Log.d(TAG, title);
             counter++;
         }
-        ;*/
+
 
     }
     private String getInputData(InputStream inStream) throws IOException {
